@@ -25,7 +25,7 @@ foreach($sqlserver in $sqlservers)
 {
     $port = $sqlserver -replace "\D", ""
 
-    docker run --name $sqlserver -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=!QAZ2wsx" -p $port`:1433 -v C:\temp\Docker\SQL:/sql -d mcr.microsoft.com/mssql/server:2017-latest
+    docker run --name $sqlserver -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=!QAZ2wsx" -p $port`:1433 -v C:\temp\Docker\SQL:/sql -d mcr.microsoft.com/mssql/server:2019-CTP2.5-ubuntu
     docker start $sqlserver
 }
 
