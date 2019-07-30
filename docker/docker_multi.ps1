@@ -2,7 +2,7 @@
 $sqlservers = New-Object System.Collections.ArrayList
 
 
-for ($i = 1; $i -lt 6; $i++)
+for ($i = 1; $i -lt 3; $i++)
 {
     $sqlservers.Add("SQL14$($i.ToString().PadLeft(2,"0"))")
 }
