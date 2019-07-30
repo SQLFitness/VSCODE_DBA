@@ -9,7 +9,8 @@ docker run `
 -p 1433:1433 `
 -e "ACCEPT_EULA=Y" `
 -e "SA_PASSWORD=!QAZ2wsx" `
--v C:\temp\Docker\SQL:/sql `
+-v C:\temp\Docker\SQL\:/sql `
+-h "DEVSQL19" `
 -d mcr.microsoft.com/mssql/server:2019-CTP3.2-ubuntu
 
 # cleanup containers processes

@@ -1,2 +1,2 @@
-$sqlserver = New-Object Microsoft.SqlServer.Management.Smo.Server "localhost\dev2016"
+$sqlserver = New-Object Microsoft.SqlServer.Management.Smo.Server "."
 $sqlserver.Databases | select name
