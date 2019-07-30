@@ -15,11 +15,18 @@ docker exec -it sql1 /opt/mssql-tools/bin/sqlcmd `
 docker exec -it sql1 "bash"
 /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "1QAZ2wsx"
 
-create database TestDB
-select name from sys.databases
-go
+CREATE DATABASE TestDB
+SELECT Name from sys.Database
+GO
 
+USE TestDB
+CREATE TABLE Inventory (id INT, name NVARCHAR(50), quantity INT)
+INSERT INTO Inventory VALUES (1, 'banana', 150); INSERT INTO Inventory VALUES (2, 'orange', 154);
+GO
 
+SELECT * FROM Inventory WHERE quantity > 152;
+SELECT * FROM Inventory;
+GO
 
 ##############################################################################################
 ## powershell
