@@ -9,8 +9,7 @@ docker run `
 -p 15789:1433 `
 -e "ACCEPT_EULA=Y" `
 -e "SA_PASSWORD=1QAZ2wsx" `
--v C:\temp\Docker\SQL\:/sql `
--h "DEVSQL19" `
+-v C:\temp\Docker\SQL:/sql `
 -d mcr.microsoft.com/mssql/server:2019-CTP3.2-ubuntu
 
 # cleanup containers processes
@@ -27,7 +26,7 @@ docker run `
 
 docker start DEVSQL19
 
-#docker stop DEVSQL19
+# docker stop DEVSQL19
 
 docker ps -a
 docker logs 239d8e925e74
@@ -36,7 +35,7 @@ docker logs 239d8e925e74
 ##############################################################################################
 ## powershell
 ##############################################################################################
-sqlcmd -S localhost,15789 -U SA -P "1QAZ2wsx"
+sqlcmd -S .,15789 -U SA -P "1QAZ2wsx"
 
 CREATE DATABASE TestDB
 SELECT Name from sys.Database

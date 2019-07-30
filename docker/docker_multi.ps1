@@ -2,7 +2,7 @@
 $sqlservers = New-Object System.Collections.ArrayList
 
 
-for ($i = 1; $i -lt 6; $i++)
+for ($i = 1; $i -lt 3; $i++)
 {
     $sqlservers.Add("SQL14$($i.ToString().PadLeft(2,"0"))")
 }
@@ -36,10 +36,10 @@ foreach($sqlserver in $sqlservers)
 {
     $port = $sqlserver -replace "\D", ""
 
-    sqlcmd -S localhost,$port -U SA -P "1QAZ2wsx"
-
+    sqlcmd -S .,$port -U SA -P "1QAZ2wsx"
 }
 
+sqlcmd -S .,15789 -U SA -P "1QAZ2wsx"
 
 
 # docker run --name SQL1401 -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=!QAZ2wsx" -p 1401:1433 -v C:\temp\Docker\SQL1401:/var/opt/mssql -d mcr.microsoft.com/mssql/server:2017-latest
@@ -49,10 +49,10 @@ foreach($sqlserver in $sqlservers)
 # docker container ls -a
 docker ps -a
 
-# foreach($sqlserver in $sqlservers)
-# {
-#     docker start $sqlserver
-# }
+foreach($sqlserver in $sqlservers)
+{
+    docker start $sqlserver
+}
 
 docker start $(docker ps -aq -f status=exited)
 # docker stop $(docker ps -aq -f status=running)
