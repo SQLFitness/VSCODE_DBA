@@ -49,6 +49,7 @@ docker start $(docker ps -aq -f status=exited)
 # docker rm $(docker ps -aq)
 
 docker ps -a  
+docker logs 4c2285e7de91
 
 # docker start SQL1402
 # docker start infallible_buck
@@ -62,3 +63,4 @@ docker ps -a
 
 # docker rm 3c0
 # docker rm 6d7
+
