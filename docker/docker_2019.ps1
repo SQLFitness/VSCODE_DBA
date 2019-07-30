@@ -11,7 +11,7 @@ docker run `
 -p 1433:1433 `
 -e "ACCEPT_EULA=Y" `
 -e "SA_PASSWORD=!QAZ2wsx" `
--v C:\temp\Docker\SQL:/sql `
+-v C:\temp\Docker\SQL\test:/sql `
 -d mcr.microsoft.com/mssql/server:2019-CTP2.5-ubuntu
 
 # cleanup 
