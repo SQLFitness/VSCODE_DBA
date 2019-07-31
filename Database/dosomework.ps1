@@ -1,11 +1,11 @@
-$SrcServer = "localhost" #Source Server Name
+$SrcServer = ".,1401" #Source Server Name
  $SrcDatabase = "testdb" #Source Database Name
  $SrcUser = "sa" #Source Login : User Name
- $SrcPwd = "1QAZ2wsx" #Source Login : Password
- $DestServer = "localhost,1401" #Destination Server Name
+ $SrcPwd = "1qaz@WSX" #Source Login : Password
+ $DestServer = ".,1402" #Destination Server Name
  $DestDatabase = "testdb" #Destination Database Name
  $DestUser = "sa" #Destination Login : User Name
- $DestPwd = "1QAZ2wsx" #Destination Login : Password
+ $DestPwd = "1qaz@WSX" #Destination Login : Password
  $SrcTable = "dbo.inventory" #Source Table Name
  $DestTable = "inventory" #Destination Table Name
  $BatchSize = 10 #Batch Size

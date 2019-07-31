@@ -6,14 +6,14 @@ docker ps -a
 
 docker exec -it sql1 /opt/mssql-tools/bin/sqlcmd `
    -S localhost -U SA -P "<YourStrong!Passw0rd>" `
-   -Q "ALTER LOGIN SA WITH PASSWORD='1QAZ2wsx'"
+   -Q "ALTER LOGIN SA WITH PASSWORD='1qaz@WSX'"
 
 
 ##############################################################################################
 ## bash
 ##############################################################################################
 docker exec -it sql1 "bash"
-/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "1QAZ2wsx"
+/opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "1qaz@WSX"
 
 CREATE DATABASE TestDB
 SELECT Name from sys.Database
@@ -31,7 +31,7 @@ GO
 ##############################################################################################
 ## powershell
 ##############################################################################################
-sqlcmd -S localhost -U SA -P "1QAZ2wsx"
+sqlcmd -S localhost -U SA -P "1qaz@WSX"
 
 docker stop sql1
 docker rm sql1
