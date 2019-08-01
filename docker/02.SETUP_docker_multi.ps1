@@ -33,15 +33,6 @@ foreach($sqlserver in $sqlservers)
    
 }
 
-# foreach($sqlserver in $sqlservers) 
-# {
-#     $port = $sqlserver -replace "\D", ""
-
-#     sqlcmd -S localhost,$port -U SA -P "1qaz@WSX"
-# }
-
-# sqlcmd -S localhost,15789 -U SA -P "1qaz@WSX"
-
 
 # docker run --name SQL1401 -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=1qaz@WSX" -p 1401:1433 -v C:\temp\Docker\SQL:/sql -d mcr.microsoft.com/mssql/server:2017-latest
 # docker run --name SQL1402 -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=1qaz@WSX" -p 1402:1433 -v C:\temp\Docker\SQL:/sql -d mcr.microsoft.com/mssql/server:2017-latest
@@ -49,32 +40,21 @@ foreach($sqlserver in $sqlservers)
 # sqlcmd -S localhost,1401 -U SA -P "1qaz@WSX"
 # sqlcmd -S .,1402 -U SA -P "1qaz@WSX"
 
-# docker images
-# docker container ls -a
 docker ps -a
 
-foreach($sqlserver in $sqlservers)
-{
-    docker stop $sqlserver
-}
+<#
+    foreach($sqlserver in $sqlservers)
+    {
+        docker stop $sqlserver
+    }
 
-#docker start $(docker ps -aq -f status=exited)
-# docker stop $(docker ps -aq -f status=running)
-# docker rm $(docker ps -aq -f status=exited)
-# docker rm $(docker ps -aq)
+    foreach($ss in $sqlservers)
+    {
+        docker rm $ss
+    }
+
+#>
 
 #docker ps -a  
-#docker logs 4c2285e7de91
+#docker logs SQL1401
 
-# docker start SQL1402
-# docker start infallible_buck
-
-# docker stop nostalgic_germain
-# docker stop infallible_buck 
-
-##############################################################################################
-## why
-##############################################################################################
-
-# docker rm 3c0
-# docker rm 6d7
