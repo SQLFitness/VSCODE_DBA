@@ -23,11 +23,12 @@ $sqlservers
 # ## make the continers
 # ##############################################################################################
 docker pull mcr.microsoft.com/mssql/server:2019-CTP2.5-ubuntu
+docker pull mcr.microsoft.com/mssql/server:2017-latest
 foreach($sqlserver in $sqlservers) 
 {
     $port = $sqlserver -replace "\D", ""
 
-    docker run --name $sqlserver -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=1qaz@WSX" -p $port`:1433 -v C:\temp\Docker\SQL:/sql -d mcr.microsoft.com/mssql/server:2019-CTP2.5-ubuntu
+    docker run --name $sqlserver -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=1qaz@WSX" -p $port`:1433 -v C:\temp\Docker\SQL:/sql -d mcr.microsoft.com/mssql/server:2017-latest
     # docker start $sqlserver
    
 }
@@ -36,10 +37,10 @@ foreach($sqlserver in $sqlservers)
 # {
 #     $port = $sqlserver -replace "\D", ""
 
-#     sqlcmd -S .,$port -U SA -P "1qaz@WSX"
+#     sqlcmd -S localhost,$port -U SA -P "1qaz@WSX"
 # }
 
-# sqlcmd -S .,15789 -U SA -P "1qaz@WSX"
+# sqlcmd -S localhost,15789 -U SA -P "1qaz@WSX"
 
 
 # docker run --name SQL1401 -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=1qaz@WSX" -p 1401:1433 -v C:\temp\Docker\SQL:/sql -d mcr.microsoft.com/mssql/server:2017-latest

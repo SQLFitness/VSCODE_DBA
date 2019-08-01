@@ -8,20 +8,62 @@ docker ps -a
 docker start SQL1401
 docker start SQL1402
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ##############################################################################################
 ## powershell
 ##############################################################################################
-sqlcmd -S .,1401 -U SA -P "1qaz@WSX"
-sqlcmd -S .,1402 -U SA -P "1qaz@WSX"
+sqlcmd -S localhost,1401 -U SA -P "1qaz@WSX"
+sqlcmd -S localhost,1402 -U SA -P "1qaz@WSX"
 
 ##############################################################################################
 ## bash
 ##############################################################################################
 docker exec -it SQL1401 "bash"
-/opt/mssql-tools/bin/sqlcmd -S .,1401 -U SA -P "1qaz@WSX"
+/opt/mssql-tools/bin/sqlcmd -S localhost,1401 -U SA -P "1qaz@WSX"
 
 docker exec -it SQL1402 "bash"
-/opt/mssql-tools/bin/sqlcmd -S .,1402 -U SA -P "1qaz@WSX"
+/opt/mssql-tools/bin/sqlcmd -S localhost,1402 -U SA -P "1qaz@WSX"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ##############################################################################################
 ## T-SQL

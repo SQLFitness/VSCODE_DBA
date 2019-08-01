@@ -12,33 +12,20 @@ docker run `
 -v C:\temp\Docker\SQL:/sql `
 -d mcr.microsoft.com/mssql/server:2019-CTP3.2-ubuntu
 
-# cleanup containers processes
-# docker ps -aq
-# docker rm $(docker ps -aq) #removes containers not images
-
-# Cleanup images
-# docker images
-# docker rmi $(docker images -aq)
-# docker rmi  b7b28af77ffe  
-
-#running processes
-# docker ps -a #ps stands for Process Start and -a will you show you all processes regardless of status
-
 docker start DEVSQL19
 
 # docker stop DEVSQL19
 
 docker ps -a
-docker logs 239d8e925e74
-
+docker logs 9b6931c93ad4
 
 ##############################################################################################
-## powershell
+## powershell to run SQL CMD SHELL
 ##############################################################################################
 sqlcmd -S localhost,15789 -U SA -P "1qaz@WSX"
 
-CREATE DATABASE TestDB
-SELECT Name from sys.Database
+CREATE DATABASE TestDB;
+SELECT Name from sys.Databases;
 GO
 
 USE TestDB
