@@ -68,6 +68,25 @@ GO
 
 
 
+# Don't forget to exit the cmd shell
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ##############################################################################################
 ## this function is needed or is it?
@@ -90,7 +109,8 @@ $SrcTable = "dbo.inventory" #Source Table Name
 
 #$SrcConnStr = New-Object System.Data.SqlClient.SqlConnection
 #$SrcConn.ConnectionString  = "Server=$SrcServer;Database=$SrcDatabase; User Id=$SrcUser; Password=$SrcPwd;"
-$SrcConnStr = ConnectionStringS $SrcServer $SrcDatabase $SrcUser $SrcPwd
+#$SrcConnStr = ConnectionStringS $SrcServer $SrcDatabase $SrcUser $SrcPwd
+$SrcConnStr = "Server=$SrcServer;uid=$SrcUser; pwd=$SrcPwd;Database=$SrcDatabase;Integrated Security=False;"
 $SrcConn  = New-Object System.Data.SqlClient.SQLConnection($SrcConnStr)
 $CmdText = "SELECT * FROM " + $SrcTable
 $SqlCommand = New-Object system.Data.SqlClient.SqlCommand($CmdText, $SrcConn)
