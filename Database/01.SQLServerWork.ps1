@@ -1,7 +1,7 @@
 ##############################################################################################
 ## Make sure to run the docker_multi.ps1 to setup the environment
 ##############################################################################################
-sqlcmd -S localhost,1401 -U sa -P "1qaz@WSX"
+sqlcmd -S localhost,15789 -U sa -P "1qaz@WSX"
 
 # do something T-SQL'y...
 SELECT name
@@ -30,9 +30,6 @@ GO
 
 
 
-##############################################################################################
-## T-SQL 
-##############################################################################################
 ##############################################################################################
 ## T-SQL
 ##############################################################################################
@@ -101,7 +98,7 @@ Function ConnectionStringS ([string] $ServerName, [string] $DbName, [string] $Us
 ## connect and do something with the server... using programs
 ## requires a DB called testdb and a table called dbo.inventory...
 ##############################################################################################
-$SrcServer = "localhost,1401" #Source Server Name
+$SrcServer = "localhost,15789" #Source Server Name
 $SrcDatabase = "testdb" #Source Database Name
 $SrcUser = "sa" #Source Login : User Name
 $SrcPwd = "1qaz@WSX" #Source Login : Password

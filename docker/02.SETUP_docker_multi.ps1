@@ -11,13 +11,13 @@ $sqlservers
 
 # #$sqlservers.Add("SQL1401")
 
-# ##############################################################################################
-# ## make the directories
-# ##############################################################################################
-# # foreach($sqlserver in $sqlservers)
-# # {
-# #     md "C:\temp\Docker\$($sqlserver)"
-# # }
+##############################################################################################
+## needed to create the local folder that sql server can access
+##############################################################################################
+$backuppath = "C:\temp\Docker\SQL\"
+if((Test-Path -Path $backuppath) -eq $false) {
+    md $backuppath
+}
 
 # ##############################################################################################
 # ## make the continers
@@ -30,9 +30,7 @@ foreach($sqlserver in $sqlservers)
 
     docker run --name $sqlserver -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=1qaz@WSX" -p $port`:1433 -v C:\temp\Docker\SQL:/sql -d mcr.microsoft.com/mssql/server:2017-latest
     # docker start $sqlserver
-   
 }
-
 
 # docker run --name SQL1401 -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=1qaz@WSX" -p 1401:1433 -v C:\temp\Docker\SQL:/sql -d mcr.microsoft.com/mssql/server:2017-latest
 # docker run --name SQL1402 -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=1qaz@WSX" -p 1402:1433 -v C:\temp\Docker\SQL:/sql -d mcr.microsoft.com/mssql/server:2017-latest
@@ -43,6 +41,10 @@ foreach($sqlserver in $sqlservers)
 docker ps -a
 
 <#
+DONT FORGET TO DISCONNECT FROM THE SERVER IN SSMS
+IT DOESNT LIKE WHEN THE SERVER DISAPPEARS AND IS
+A LITTLE CRANKY.
+
     foreach($sqlserver in $sqlservers)
     {
         docker stop $sqlserver
