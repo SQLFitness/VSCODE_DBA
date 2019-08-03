@@ -1,5 +1,5 @@
 $sqlcred = Get-Credential
-$sqlinst = "localhost,1401"
+$sqlinst = "localhost,15789"
 $dbname = "VSDBA"
 #$csvfile = ".\files\SampleCSVFile_5300kb.csv"
 $csvfile = ".\files\SampleCSVFile_556kb.csv"
@@ -11,3 +11,4 @@ $csv = Invoke-DbaQuery -SqlInstance $sqlinst -Database $dbname -SqlCredential $s
 $csv
 $csv | format-table -autosize
 $csv | Out-GridView
+

@@ -12,7 +12,7 @@ $backuppath = "C:\temp\Docker\SQL\Backup\"
 $backupfile = "VSDBA.bak"
 
 if((Test-Path -Path $backuppath) -eq $false) {
-    md $backuppath
+    mkdri $backuppath
 }
 
 if((Test-Path -Path ($backuppath + $backupfile)) -eq $false) {
@@ -29,7 +29,7 @@ $sqlcred = Get-Credential
 ##############################################################################################
 $dblist = New-Object System.Collections.ArrayList
 
-for ($i = 1; $i -lt 5; $i++) {
+for ($i = 1; $i -lt 3; $i++) {
     $dblist.Add("SQL14$($i.ToString().PadLeft(2,"0"))")
 }
 
@@ -81,12 +81,12 @@ if((Test-Path -Path "c:\temp\docker\$backupdirectory") -eq $false) {
 $sqlinst = "Localhost,1401"
 $sqlinst2 = "Localhost,1404"
 
-$dbnames = Invoke-DbaQuery -SqlInstance $sqlinst -SqlCredential $sqlcred -Query "SELECT TOP(3) name FROM sys.databases WHERE database_id > 4 ORDER BY name DESC; "
+$dbnames = Invoke-DbaQuery -SqlInstance $sqlinst -SqlCredential $sqlcred -Query "SELECT TOP(1) name FROM sys.databases WHERE database_id > 4 ORDER BY name DESC; "
 $dbnames | foreach-object {
     Backup-DbaDatabase -SqlInstance $sqlinst -SqlCredential $sqlcred -BackupDirectory $backupdirectory -Database $_.Name -Type Full
 }
 
-$backuplist = Invoke-DbaQuery -SqlInstance $sqlinst -SqlCredential $sqlcred -Query "SELECT TOP(3) d.name, REPLACE(backscript.physical_device_name, 'c:\sql\backup\new\', '/sql/Backup/new/') AS backuppath 
+$backuplist = Invoke-DbaQuery -SqlInstance $sqlinst -SqlCredential $sqlcred -Query "SELECT TOP(1) d.name, REPLACE(backscript.physical_device_name, 'c:\sql\backup\new\', '/sql/Backup/new/') AS backuppath 
 FROM sys.databases d 
 LEFT JOIN sys.master_files AS MDF ON MDF.database_id = D.database_id AND MDF.file_id = 1
 LEFT JOIN sys.master_files AS LDF ON LDF.database_id = D.database_id AND LDF.file_id = 2

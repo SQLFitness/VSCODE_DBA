@@ -19,6 +19,20 @@ docker run `
 -v C:\temp\Docker\SQL:/sql `
 -d mcr.microsoft.com/mssql/server:2019-CTP3.2-ubuntu
 
+##############################################################################################
+## copy a bak file into the folder for restoreability
+##############################################################################################
+$backuppath = "C:\temp\Docker\SQL\Backup\"
+$backupfile = "VSDBA.bak"
+
+if((Test-Path -Path $backuppath) -eq $false) {
+    md $backuppath
+}
+
+if((Test-Path -Path ($backuppath + $backupfile)) -eq $false) {
+    Copy-Item ".\Files\VSDBA.bak" $backuppath
+}
+
 # docker start DEVSQL19
 
 # docker stop DEVSQL19

@@ -85,13 +85,7 @@ GO
 
 
 
-##############################################################################################
-## this function is needed or is it?
-##############################################################################################
-Function ConnectionStringS ([string] $ServerName, [string] $DbName, [string] $User, [string] $Pwd)
-{
-"Server=$ServerName;uid=$User; pwd=$Pwd;Database=$DbName;Integrated Security=False;"
-}
+
 
 
 ##############################################################################################
@@ -120,3 +114,11 @@ $SrcConn.close()
 $Datatable | Format-Table -AutoSize
 
 $Datatable | Out-GridView
+
+##############################################################################################
+## this function is needed or is it?
+##############################################################################################
+Function ConnectionStringS ([string] $ServerName, [string] $DbName, [string] $User, [string] $Pwd)
+{
+"Server=$ServerName;uid=$User; pwd=$Pwd;Database=$DbName;Integrated Security=False;"
+}
