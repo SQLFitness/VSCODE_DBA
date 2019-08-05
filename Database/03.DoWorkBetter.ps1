@@ -12,7 +12,7 @@ $backuppath = "C:\temp\Docker\SQL\Backup\"
 $backupfile = "VSDBA.bak"
 
 if((Test-Path -Path $backuppath) -eq $false) {
-    mkdri $backuppath
+    mkdir $backuppath
 }
 
 if((Test-Path -Path ($backuppath + $backupfile)) -eq $false) {
@@ -65,7 +65,7 @@ foreach($sqlinst in $serverlist) {
 ## restore db using dbatools
 ##############################################################################################
 $sqlcred = Get-Credential
-Restore-DbaDatabase -SqlInstance "Localhost,1401" -SqlCredential $sqlcred -Path "/sql/Backup/VSDBA.bak" 
+Restore-DbaDatabase -SqlInstance "Localhost,15789" -SqlCredential $sqlcred -Path "/sql/Backup/VSDBA.bak" 
 
 #get-help backup
 #get-help query | out-gridview
