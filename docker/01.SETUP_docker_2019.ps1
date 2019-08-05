@@ -38,7 +38,7 @@ if((Test-Path -Path ($backuppath + $backupfile)) -eq $false) {
 # docker stop DEVSQL19
 
 # docker ps -a
-# docker logs 9b6931c93ad4
+# docker logs 7134e7fe39bd
 
 ##############################################################################################
 ## powershell to run SQL CMD SHELL
