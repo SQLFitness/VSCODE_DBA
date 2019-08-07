@@ -2,21 +2,21 @@
 $sqlservers = New-Object System.Collections.ArrayList
 
 
-for ($i = 1; $i -lt 5; $i++)
+for ($i = 1; $i -lt 3; $i++)
 {
     $sqlservers.Add("SQL14$($i.ToString().PadLeft(2,"0"))")
 }
 
 $sqlservers
 
-# #$sqlservers.Add("SQL1401")
-
 ##############################################################################################
-## needed to create the local folder that sql server can access
+## needed to create the local folder that sql server can access (one for each "server" containter)
 ##############################################################################################
-$backuppath = "C:\temp\Docker\SQL\"
-if((Test-Path -Path $backuppath) -eq $false) {
-    mkdir $backuppath
+$backuppath = "C:\temp\Docker\"
+$sqlservers | ForEach-Object {
+    if((Test-Path -Path "$backuppath\$_\backup") -eq $false) {
+        mkdir "$backuppath\$_\backup"
+    }    
 }
 
 # ##############################################################################################
@@ -27,8 +27,10 @@ docker pull mcr.microsoft.com/mssql/server:2017-latest
 foreach($sqlserver in $sqlservers) 
 {
     $port = $sqlserver -replace "\D", ""
+    $dir =  "C:\temp\Docker\$sqlserver`:/$sqlserver"
+    $dir
 
-    docker run --name $sqlserver -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=1qaz@WSX" -p $port`:1433 -v C:\temp\Docker\SQL:/sql -d mcr.microsoft.com/mssql/server:2017-latest
+    docker run --name $sqlserver -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=1qaz@WSX" -p $port`:1433 -v $dir -d mcr.microsoft.com/mssql/server:2017-latest
     # docker start $sqlserver
 }
 
@@ -39,6 +41,8 @@ foreach($sqlserver in $sqlservers)
 # sqlcmd -S .,1402 -U SA -P "1qaz@WSX"
 
 docker ps -a
+# docker rm $(docker ps -aq -f status=exited)
+# docker stop SQL1402
 
 <#
 DONT FORGET TO DISCONNECT FROM THE SERVER IN SSMS
